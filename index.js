@@ -6,10 +6,15 @@ const app = express()
 const port = process.env.PORT || 3000;
 
 // 👇 [CHANGE KORA HOYECHE] Shothik Environment Variable use kora hoyeche
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3adt9xq.mongodb.net/?appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3adt9xq.mongodb.net/?appName=Cluster0 `;
+
 
 //middleware
-app.use(cors());
+app.use(cors({
+
+origin:[ "http://localhost:5173","https://food-lover-d4878.web.app"]
+
+}));
 app.use(express.json());
 
 //client create..
@@ -28,7 +33,7 @@ app.get('/', (req, res) => {
 async function run() {
     try {
         // 👇 [CHANGE KORA HOYECHE] Ei line-ti uncomment kora hoyeche. Eti-i shobcheye joruri.
-        await client.connect();
+        //await client.connect();
 
         const db = client.db("food-lovers-db")
         const userCollection = db.collection('users');
@@ -149,7 +154,7 @@ async function run() {
         })
 
         // 👇 [CHANGE KORA HOYECHE] Ei line-ti uncomment kora hoyeche
-        await client.db("admin").command({ ping: 1 });
+        //await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
