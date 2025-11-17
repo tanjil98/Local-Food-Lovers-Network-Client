@@ -5,7 +5,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const port = process.env.PORT || 3000;
 
-const uri = `mongodb+srv://98sakib_db_user:mvNxoZL8M7mJbiVI@cluster0.3adt9xq.mongodb.net/?appName=Cluster0`;
+// 👇 [CHANGE KORA HOYECHE] Shothik Environment Variable use kora hoyeche
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3adt9xq.mongodb.net/?appName=Cluster0`;
 
 //middleware
 app.use(cors());
@@ -26,7 +27,8 @@ app.get('/', (req, res) => {
 
 async function run() {
     try {
-        // await client.connect();
+        // 👇 [CHANGE KORA HOYECHE] Ei line-ti uncomment kora hoyeche. Eti-i shobcheye joruri.
+        await client.connect();
 
         const db = client.db("food-lovers-db")
         const userCollection = db.collection('users');
@@ -146,7 +148,8 @@ async function run() {
             }
         })
 
-        // await client.db("admin").command({ ping: 1 });
+        // 👇 [CHANGE KORA HOYECHE] Ei line-ti uncomment kora hoyeche
+        await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
