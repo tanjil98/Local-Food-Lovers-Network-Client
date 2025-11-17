@@ -5,7 +5,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const port = process.env.PORT || 3000;
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.m0fnk2l.mongodb.net/?appName=Cluster0`;
+const uri = `mongodb+srv://98sakib_db_user:mvNxoZL8M7mJbiVI@cluster0.3adt9xq.mongodb.net/?appName=Cluster0`;
 
 //middleware
 app.use(cors());
